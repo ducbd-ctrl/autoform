@@ -29,7 +29,7 @@
 <body>
     <div class="form-container">
         <h1>お問い合わせフォーム</h1>
-        <form id="contactForm">
+        <form id="contactForm" action="charge-form.html" method="GET">
             <div class="form-group">
                 <label for="email">メールアドレス</label>
                 <input type="email" id="email" name="email" required placeholder="example@email.com">
@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label id="forminator-field-checkbox-1-1-label" for="forminator-field-checkbox-1-1" class="forminator-checkbox" title="11,000円の請求に応じます（会計・税務相談は無料です）">
-                    <input type="checkbox" name="checkbox-1[]" value="one" id="forminator-field-checkbox-1-1" aria-labelledby="forminator-field-checkbox-1-1-label" required>
+                    <input type="checkbox" name="checkbox-1" value="one" id="forminator-field-checkbox-1-1" aria-labelledby="forminator-field-checkbox-1-1-label" required>
                     <span class="forminator-checkbox-box" aria-hidden="true"></span>
                     <span class="forminator-checkbox-label">11,000円の請求に応じます（会計・税務相談は無料です）</span>
                 </label>
@@ -50,15 +50,9 @@
         </form>
     </div>
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            console.log({ email, message });
+        if (window.location.search) {
             document.getElementById('successMsg').style.display = 'block';
-            this.reset();
-            setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 3000);
-        });
+        }
     </script>
 </body>
 </html>
