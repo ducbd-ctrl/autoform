@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせフォーム</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .form-container { background: #16213e; padding: 50px; border-radius: 4px; border: 1px solid #0f3460; width: 100%; max-width: 450px; }
+        h1 { margin-bottom: 30px; color: #e94560; font-size: 26px; border-bottom: 2px solid #e94560; padding-bottom: 10px; }
+        .form-group { margin-bottom: 24px; }
+        label { display: block; margin-bottom: 10px; color: #eee; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+        input, textarea { width: 100%; padding: 14px; border: none; border-bottom: 2px solid #0f3460; background: #1a1a2e; color: #fff; font-size: 14px; }
+        input:focus, textarea:focus { outline: none; border-bottom-color: #e94560; }
+        textarea { resize: vertical; min-height: 100px; }
+        button { width: 100%; padding: 16px; background: #e94560; color: #fff; border: none; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
+        button:hover { background: #ff6b6b; }
+        .success { color: #4ecca3; margin-top: 16px; text-align: center; display: none; }
+        .forminator-checkbox { display: flex; align-items: flex-start; cursor: pointer; color: #eee; font-size: 14px; line-height: 1.5; }
+        .forminator-checkbox input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+        .forminator-checkbox-box { flex-shrink: 0; width: 20px; height: 20px; border: 2px solid #0f3460; background: #1a1a2e; margin-right: 12px; margin-top: 2px; position: relative; transition: all 0.2s; }
+        .forminator-checkbox input[type="checkbox"]:checked + .forminator-checkbox-box { background: #e94560; border-color: #e94560; }
+        .forminator-checkbox input[type="checkbox"]:checked + .forminator-checkbox-box::after { content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+        .forminator-checkbox-label { text-transform: none; letter-spacing: normal; }
+        .forminator-checkbox input[type="checkbox"]:focus + .forminator-checkbox-box { border-color: #e94560; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>お問い合わせフォーム</h1>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email" required placeholder="example@email.com">
+            </div>
+            <div class="form-group">
+                <label for="message">お問い合わせ内容</label>
+                <textarea id="message" name="message" required placeholder="お問い合わせ内容をご入力ください"></textarea>
+            </div>
+            <div class="form-group">
+                <label id="forminator-field-checkbox-1-1-label" for="forminator-field-checkbox-1-1" class="forminator-checkbox" title="11,000円の請求に応じます（会計・税務相談は無料です）">
+                    <input type="checkbox" name="checkbox-1[]" value="one" id="forminator-field-checkbox-1-1" aria-labelledby="forminator-field-checkbox-1-1-label" required>
+                    <span class="forminator-checkbox-box" aria-hidden="true"></span>
+                    <span class="forminator-checkbox-label">11,000円の請求に応じます（会計・税務相談は無料です）</span>
+                </label>
+            </div>
+            <button type="submit">送信</button>
+            <p class="success" id="successMsg">ありがとうございました</p>
+        </form>
+    </div>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            console.log({ email, message });
+            document.getElementById('successMsg').style.display = 'block';
+            this.reset();
+            setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 3000);
+        });
+    </script>
+</body>
+</html>

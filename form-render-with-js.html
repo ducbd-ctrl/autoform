@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせフォーム</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', sans-serif; background: #fafafa; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .form-container { background: #fff; padding: 48px; border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); width: 100%; max-width: 400px; }
+        h1 { margin-bottom: 32px; color: #222; font-size: 22px; font-weight: 600; }
+        .form-group { margin-bottom: 24px; }
+        label { display: block; margin-bottom: 8px; color: #888; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        input, textarea { width: 100%; padding: 16px; border: 1px solid #e0e0e0; border-radius: 12px; font-size: 15px; background: #f8f8f8; }
+        input:focus, textarea:focus { outline: none; border-color: #222; background: #fff; }
+        textarea { resize: vertical; min-height: 110px; }
+        button { width: 100%; padding: 16px; background: #222; color: #fff; border: none; border-radius: 12px; font-size: 15px; font-weight: 500; cursor: pointer; }
+        button:hover { background: #444; }
+        .success { color: #10b981; margin-top: 16px; text-align: center; font-size: 14px; display: none; }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var app = document.getElementById('app');
+
+            var container = document.createElement('div');
+            container.className = 'form-container';
+
+            var h1 = document.createElement('h1');
+            h1.textContent = 'お問い合わせフォーム';
+            container.appendChild(h1);
+
+            var form = document.createElement('form');
+            form.id = 'contactForm';
+
+            var emailGroup = document.createElement('div');
+            emailGroup.className = 'form-group';
+            var emailLabel = document.createElement('label');
+            emailLabel.setAttribute('for', 'email');
+            emailLabel.textContent = 'メールアドレス';
+            var emailInput = document.createElement('input');
+            emailInput.type = 'email';
+            emailInput.id = 'email';
+            emailInput.name = 'email';
+            emailInput.required = true;
+            emailInput.placeholder = 'example@email.com';
+            emailGroup.appendChild(emailLabel);
+            emailGroup.appendChild(emailInput);
+            form.appendChild(emailGroup);
+
+            var messageGroup = document.createElement('div');
+            messageGroup.className = 'form-group';
+            var messageLabel = document.createElement('label');
+            messageLabel.setAttribute('for', 'message');
+            messageLabel.textContent = 'お問い合わせ内容';
+            var messageTextarea = document.createElement('textarea');
+            messageTextarea.id = 'message';
+            messageTextarea.name = 'message';
+            messageTextarea.required = true;
+            messageTextarea.placeholder = 'お問い合わせ内容をご入力ください';
+            messageGroup.appendChild(messageLabel);
+            messageGroup.appendChild(messageTextarea);
+            form.appendChild(messageGroup);
+
+            var button = document.createElement('button');
+            button.type = 'submit';
+            button.textContent = '送信';
+            form.appendChild(button);
+
+            var successMsg = document.createElement('p');
+            successMsg.className = 'success';
+            successMsg.id = 'successMsg';
+            successMsg.textContent = 'お問い合わせありがとうございます';
+            form.appendChild(successMsg);
+
+            container.appendChild(form);
+            app.appendChild(container);
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                document.getElementById('successMsg').style.display = 'block';
+                this.reset();
+                setTimeout(function() { document.getElementById('successMsg').style.display = 'none'; }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>

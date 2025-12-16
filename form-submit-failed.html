@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせフォーム</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Courier New', monospace; background: #0d1117; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .form-container { background: #161b22; padding: 40px; border: 1px solid #30363d; border-radius: 6px; width: 100%; max-width: 440px; }
+        h1 { margin-bottom: 24px; color: #58a6ff; font-size: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #c9d1d9; font-size: 14px; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #30363d; border-radius: 6px; font-size: 14px; background: #0d1117; color: #c9d1d9; font-family: 'Courier New', monospace; }
+        input:focus, textarea:focus { outline: none; border-color: #58a6ff; }
+        textarea { resize: vertical; min-height: 100px; }
+        button { width: 100%; padding: 12px; background: #238636; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: 'Courier New', monospace; }
+        button:hover { background: #2ea043; }
+        .success { color: #3fb950; margin-top: 16px; text-align: center; display: none; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>お問い合わせフォーム</h1>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email" required placeholder="example@email.com">
+            </div>
+            <div class="form-group">
+                <label for="message">お問い合わせ内容</label>
+                <textarea id="message" name="message" required placeholder="お問い合わせ内容をご入力ください"></textarea>
+            </div>
+            <button type="submit">送信</button>
+            <p class="success" id="successMsg">// success: true</p>
+        </form>
+    </div>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'failed.html';
+        });
+    </script>
+</body>
+</html>
